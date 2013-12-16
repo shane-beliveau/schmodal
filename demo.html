@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <!--Meta tags-->
+        <meta charset="utf-8">
+
+        <!--Title-->
+        <title>Schmodal Example</title>
+
+        <!--Stylesheets-->
+        <link rel="stylesheet" type="text/css" href="css/schmodal.css">
+
+	</head>
+<body>
+
+
+<p style="height: 2000px;">
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est, illo exercitationem animi consequatur quis earum voluptatum excepturi quam maxime ullam? Aperiam, eum, ad provident nisi quas repellendus esse dignissimos cum.
+</p>
+
+<div class="test_schmodal">
+
+	<div class="schmodal_logo">
+		<img src="http://placekitten.com/500/100" alt="Logo">
+	</div>
+
+	<h1 class="schmodal_title">You need to pay dough for this content!</h1>
+	<h2 class="schmodal_subtitle">
+		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic, harum, qui, ut accusantium impedit ipsum minima eligendi.
+	</h2>
+
+	<div class="schmection">
+		Here's what you get:
+
+		<ul>
+			<li>Bark.</li>
+			<li>Meow.</li>
+		</ul>
+
+	</div>
+
+	<div class="schmection">
+		<strong>Already registered?</strong> 
+		<br/>
+		<a href="#">Login Here</a>
+	</div>
+
+</div>
+
+<!-- Scripts -->
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="js/jquery.schmodal.js"></script>
+
+<script>
+	
+	(function($){
+
+		$('.test_schmodal').schmodal({
+            width           : 560,
+			action			: 'load',
+			screen_min 		: 400,
+			disable_scroll 	: false,
+			bg_close		: false
+		});
+
+	})(jQuery);
+
+</script>
+
+</body>
+</html>
