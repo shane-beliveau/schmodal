@@ -19,7 +19,7 @@
         	close_img		: 'images/schmodal_close.png',
         	disable_scroll	: false,
         	fadein_time		: 500,
-        	left_offset		: "50%",
+        	left_offset		: '50%',
         	min_width		: false,
         	screen_min		: false,
         	trigger			: '.schmodal_open',
@@ -105,35 +105,50 @@
         		var $elem = $elem.data.elem;	
         	}
 
-        	$elem
-				.fadeIn($opts.fadein_time)
-	            .find('.schmodal_modal')
-	            .css({
-	            	'left' : $opts.left_offset,
-	                'width' : function() { 
-	                	return ( typeof $opts.width == 'number' ) ? $opts.width  + 'px' : $opts.width 
-	                },
-	                'margin-left' : function() { 
-	                	return ( typeof $opts.width == 'number' ) ? '-'+ ($opts.width / 2) +'px' : ( $opts.width.match(/\%/i) ) ? '-' + ( parseFloat($opts.width.replace('%','')) / 2 ) + '%'  : 'auto';
-	                },
-	                'position' : function() { 
-	            		var el_height = $(this).outerHeight();
-	            		return ( el_height <= $opts.w_height ) ? 'fixed' : 'absolute';
-	            	},
-	            	'top' :  function() { 
-	            		var el_height = $(this).outerHeight() / 2;
-	            		return ( ($opts.w_height / 2) - el_height < 0 ) ? '50px' : ($opts.w_height / 2) - el_height + 'px';
-	            	},
-	            	'min-width'	: function() { 
+            // Wait until images are loaded if applicable
+            if( $elem.has('img').length )
+            {
+                $elem.find('img').on('load', function(){
+                    $elem.trigger('schmodal_modal_loaded'); 
+                });
 
-	            		if( ! $opts.min_width )
-	            		{
-	            			return ( typeof $opts.width == 'number' ) ? ($opts.width / 2) +'px' : ( $opts.width.match(/\%/i) ) ? ( $opts.w_width * parseFloat( '0.' + $opts.width.replace('%','')) ) + 'px'  : '';
-	            		}	
-	            		return ( typeof $opts.min_width == 'number' ) ? $opts.min_width + 'px' : $opts.min_width
+            } else {
+                $elem.trigger('schmodal_modal_loaded');
+            }
 
-	                },
-	            });
+
+            $elem.on('schmodal_modal_loaded', function(){
+
+            	$elem
+    				.fadeIn($opts.fadein_time)
+    	            .find('.schmodal_modal')
+    	            .css({
+    	            	'left' : $opts.left_offset,
+    	                'width' : function() { 
+    	                	return ( typeof $opts.width == 'number' ) ? $opts.width  + 'px' : $opts.width 
+    	                },
+    	                'margin-left' : function() { 
+    	                	return ( typeof $opts.width == 'number' ) ? '-'+ ($opts.width / 2) +'px' : ( $opts.width.match(/\%/i) ) ? '-' + ( parseFloat($opts.width.replace('%','')) / 2 ) + '%'  : 'auto';
+    	                },
+    	                'position' : function() { 
+    	            		var el_height = $(this).outerHeight();
+    	            		return ( el_height <= $opts.w_height ) ? 'fixed' : 'absolute';
+    	            	},
+    	            	'top' :  function() { 
+    	            		var el_height = $(this).outerHeight() / 2;
+    	            		return ( ($opts.w_height / 2) - el_height < 0 ) ? '50px' : ($opts.w_height / 2) - el_height + 'px';
+    	            	},
+    	            	'min-width'	: function() { 
+
+    	            		if( ! $opts.min_width )
+    	            		{
+    	            			return ( typeof $opts.width == 'number' ) ? ($opts.width / 2) +'px' : ( $opts.width.match(/\%/i) ) ? ( $opts.w_width * parseFloat( '0.' + $opts.width.replace('%','')) ) + 'px'  : '';
+    	            		}	
+    	            		return ( typeof $opts.min_width == 'number' ) ? $opts.min_width + 'px' : $opts.min_width
+
+    	                },
+    	            });
+            });
 
 	        // Check if the Schmodal height is higher than the document height 
 	        // and force the document height if true
