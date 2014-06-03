@@ -1,5 +1,5 @@
 /*
- *  jQuery Schmodal 0.1
+ *  jQuery Schmodal 0.2
  *  
  *  Author: Shane Beliveau
  *  Website: http://shanebeliveau.com

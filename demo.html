@@ -16,7 +16,13 @@
 
 
 <p style="height: 2000px;">
-	Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est, illo exercitationem animi consequatur quis earum voluptatum excepturi quam maxime ullam? Aperiam, eum, ad provident nisi quas repellendus esse dignissimos cum.
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est, illo exercitationem animi consequatur quis earum 
+    voluptatum excepturi quam maxime ullam? Aperiam, eum, ad provident nisi quas repellendus esse 
+    dignissimos cum.
+
+    <br/><br/>
+
+    <button>Open</button>
 </p>
 
 <div class="test_schmodal">
@@ -61,7 +67,10 @@
 			action			: 'load',
 			screen_min 		: 400,
 			disable_scroll 	: true,
-			bg_close		: true
+			bg_close		: true,
+            onClose         : function() {
+                console.log('YEH YEAH YEAH YUH!');
+            }
 		});
 
 	})(jQuery);
